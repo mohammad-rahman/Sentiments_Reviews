@@ -3,7 +3,13 @@ import matplotlib.pyplot as plt
 
 def make_plot(sentiments: list) -> list:
     """
-    
+    Will count how mnay times each sentiment appears. 
+
+        Parameters:
+            sentiments (list): "positive", "neutral", "negative", "irrelevant"
+
+        Returns: 
+            Nothing
     """
  
 # This initializes counts
@@ -24,7 +30,7 @@ def make_plot(sentiments: list) -> list:
 
 
   # Use Counter to count occurrences of each sentiment label.
-    #valid_labels = {"positive", "neutral", "negative", "irrelevant"}
+
     x_labels = list(counts.keys())
     y_labels = list(counts.values())
  
