@@ -3,28 +3,35 @@ from openai import OpenAI
 
 def get_sentiment(text: list) -> list:
     """
-    INSERT DOCSTRING HERE
-    """
+    Will take in a list of string reviews, pass this list to the open ai API. Eventually, it will
+    return the output of a list of sentiments. It will also convey a mesasage if there is
+    a wromg input. 
     
+        Parameter:
+            text (list): string reviews
+
+        Returns:
+            list: sentiments
+    """
+
+    #Messages if there is a wrong input". 
+
     if not isinstance(text, list) or not all(isinstance(item, str) for item in text):
         return "Wrong input. text must be an array of strings."
-    #if not isinstance(text, list) or not isinstance(str, list):
-    #    return "wrong input; must be strings and texts"
+   
     if not text:
         return "Wrong input. text must be an array of strings."
 
  
+    #This is an object
 
     client = OpenAI()
 
-    system_prompt = """"You are an expert sentiment classifier. For each review:\n
-    Classify each review with one of these labels: positive, neutral, negative, or irrelevant.\n
-    Return only one label per line.\n
-    Never Split the review into multiple lines.\n
-    Do NOT include numbering, punctuation, brackets, or extra formatting.\n
-    Be sensitive to emotional tone, sarcasm, irony, or context.\n
-    Watch for transitions like 'but', 'however', or 'overall', as these may indicate a negative sentiment.\n
-    Always base your label on the full review, not just a portion.\n
+    
+    #These are prompts given to open ai
+
+    system_prompt = """"You are good at automatically labeling sentiments from the provided data \n
+    (reviews by clients). 
     """
 
     prompt = f"""
@@ -47,6 +54,8 @@ def get_sentiment(text: list) -> list:
     raw_output = response.choices[0].message.content
 
     output_list = []
+    
+    #Data cleaning and getting the output
     
     for line in raw_output.splitlines():
         clean_output = line.strip()
