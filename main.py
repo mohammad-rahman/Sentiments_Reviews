@@ -6,7 +6,14 @@ import json
 
 def run(filepath: str):
     """
-    INSERT DOCSTRING HERE
+    Will return the list of sentiments generated from the open AI API calss. 
+    
+        Parameters:
+            filepath (str): file with data
+
+        Returns:
+            sentiments (list): generated from the Open AI API call. 
+ 
     """
     # open the json object
     with open(filepath, 'r') as file:
